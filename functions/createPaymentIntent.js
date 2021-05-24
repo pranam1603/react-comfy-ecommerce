@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
         const { total_amount, shipping_fee } = JSON.parse(event.body)
 
         const calculateOrderAmount = () => {
-            return (total_amount + shipping_fee)
+            return (total_amount + shipping_fee) * 10
 
         }
         try {
