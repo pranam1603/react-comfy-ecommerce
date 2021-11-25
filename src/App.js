@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Sidebar, Footer } from './components';
 import {
@@ -12,8 +12,15 @@ import {
   Products,
   AuthWrapper
 } from './pages'
+import ReactGA from 'react-ga';
 
 function App() {
+
+  useEffect(() => { 
+    ReactGA.initialize('G-MFKGSX4MNY');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return <AuthWrapper>
     <Router>
       <Navbar />
