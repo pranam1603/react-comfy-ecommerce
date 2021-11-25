@@ -13,16 +13,25 @@ import {
   AuthWrapper
 } from './pages'
 import ReactGA from 'react-ga';
+import {createBrowserHistory} from 'history'
+
+const history = createBrowserHistory()
+
+ReactGA.initialize('G-YRNR517VPP');
+    history.listen((location, action) => {
+		ReactGA.pageview(location.pathname + location.search);
+	})
+
 
 function App() {
 
-  useEffect(() => { 
-    ReactGA.initialize('G-MFKGSX4MNY');
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+  useEffect(() => {
+		ReactGA.pageview(window.location.pathname + window.location.search);		
+	}, [])
+	
 
   return <AuthWrapper>
-    <Router>
+    <Router  history={history}>
       <Navbar />
       <Sidebar />
       <Switch>
